@@ -34,7 +34,7 @@ class RefreshSingleActivity : AppCompatActivity() {
                 , resources.getDimensionPixelSize(R.dimen.margin_normal)
             )
         )
-        adapter.updateDatas(Collections.nCopies(20, Any()))
+        adapter.updateDatas(Collections.nCopies(10, Any()))
 
         view_refresh_header.setOnRefreshListener(object : OnRefreshListener {
             override fun onRefresh() {
@@ -42,6 +42,8 @@ class RefreshSingleActivity : AppCompatActivity() {
                     view_refresh_header.stopRefresh()
                     currentPage = initPage
                     view_footer.setHasMore(currentPage <= maxPage)
+                    //below To reset values
+                    adapter.updateDatas(Collections.nCopies(20, Any()))
                 }, 2000)
             }
         })
@@ -52,6 +54,8 @@ class RefreshSingleActivity : AppCompatActivity() {
                     view_footer.stopLoadMore()
                     currentPage++
                     view_footer.setHasMore(currentPage <= maxPage)
+                    //below To Update values
+                    adapter.updateDatas(Collections.nCopies(40, Any()))
                 }, 2000)
             }
         })
